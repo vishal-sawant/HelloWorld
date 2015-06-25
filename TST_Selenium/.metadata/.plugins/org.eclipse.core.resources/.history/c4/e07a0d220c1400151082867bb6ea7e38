@@ -1,0 +1,105 @@
+package SignUp;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Test;
+
+public class CC_SignUp {
+
+	// public static void main(String[] args)
+	@Test
+	public void ccSignUp() throws InterruptedException {
+
+		WebDriver driver;
+		WebElement element = null;
+		driver = new FirefoxDriver();
+		driver.get("http://awsstage.thestreet.com");
+		driver.manage().window().maximize();
+
+		element = driver.findElement(By.xpath("//a[contains(text(),'Continue to site')]"));
+		element.click();
+		
+		element = driver.findElement(By.xpath("//li[@id='servicesLink']/a"));
+		element.click();
+		
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		
+		element = driver.findElement(By.xpath("//a[contains(text(),'Chairma')]"));
+		element.click();
+				
+		/*//Members Login 
+		element = driver.findElement(By.className("textField"));
+		element.click();
+		element.sendKeys("testuser123@thestreet.com");
+		
+		element = driver.findElement(By.className("textField passwordField"));
+		element.click();
+		element.sendKeys("street");
+		
+		element = driver.findElement(By.className("textField passwordField"));
+		element.click();*/
+		
+		element = driver.findElement(By.className("upgradeButton"));
+		element.click();
+		
+		//MLP ==> "Begin your exclusive membership//
+		element=driver.findElement(By.xpath("//div[@class='buttons']/a/img")); element.click();
+		  
+		Thread.sleep(2000);
+		
+		//CC Page 
+		element=driver.findElement(By.id("user.emailAddress1"));
+		element.click(); 
+		element.sendKeys("testuser_16june@thestreet.com");
+		 
+		element=driver.findElement(By.id("user.firstName")); 
+		element.click();
+		element.sendKeys("testfn");
+		 
+		element=driver.findElement(By.id("user.lastName")); element.click();
+		element.sendKeys("testln");
+		 
+		element=driver.findElement(By.id("user.password"));
+		element.sendKeys("thestreet");
+		 
+		element=driver.findElement(By.id("user.confirmPassword"));
+		element.sendKeys("thestreet");
+					 
+		element=driver.findElement(By.id("creditCard.creditCardNumber"));
+		element.sendKeys("4111111111111111");
+		
+		element=driver.findElement(By.id("creditCard.creditCardCvv"));
+		element.sendKeys("123");
+		  
+		element=driver.findElement(By.id("creditCard.creditCardHolderName"));
+		element.sendKeys("testfn testln");
+		  
+		element=driver.findElement(By.id("creditCard.creditCardAddress1"));
+		element.sendKeys("123 123");
+		  
+		element=driver.findElement(By.id("creditCard.creditCardAddress2"));
+		element.sendKeys("123 123");
+			  
+		element=driver.findElement(By.id("creditCard.creditCardCity"));
+		element.sendKeys("New York");
+		  
+		Select dropdown=new Select(driver.findElement(By.id("creditCard.creditCardState")));
+		dropdown.selectByValue("NY");
+		  
+		element=driver.findElement(By.id("creditCard.creditCardPostalCode"));
+		element.sendKeys("55555");
+		  
+		element=driver.findElement(By.id("creditCard.creditCardTelephone1"));
+		element.sendKeys("1234567890");
+		 
+		element=driver.findElement(By.id("submitButton")); element.click();
+		driver.manage().deleteAllCookies();
+		//driver.quit();
+	}
+}
+

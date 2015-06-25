@@ -1,0 +1,9 @@
+package Lib;
+import Lib.WebElementMapping;
+
+public class CommonConstant
+{
+	public static final String workingDir =	System.getProperty("user.dir");
+	public static final WebElementMapping elementmap = new WebElementMapping(workingDir+"\\src\\Config\\ConfigFile.properties");
+
+}

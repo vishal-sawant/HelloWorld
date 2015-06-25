@@ -1,0 +1,16 @@
+<suite name="Sign Up Demo" verbose="10">
+	<listeners>
+      <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+      <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+  	</listeners>
+		<test name="TheStreet" preserve-order="true">
+			<classes>
+				<class name="SignUp.ConfigureTST"> </class>
+       			<class name="SignUp.CC_SignUp"> </class>
+       			<class name="SignUp.AAP_SignUp"> </class>
+       			<class name="SignUp.AAO_SignUp"> </class>
+       			<class name="SignUp.DST_SignUp"> </class>
+       			<class name="SignUp.DSA_SignUp"> </class>
+   			</classes>
+  		</test>
+</suite>

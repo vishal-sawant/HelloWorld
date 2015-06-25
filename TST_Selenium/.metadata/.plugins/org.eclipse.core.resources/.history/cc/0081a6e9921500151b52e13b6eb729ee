@@ -1,0 +1,67 @@
+package SignUp;
+
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestContext;
+import org.testng.annotations.Test;
+
+import Lib.WebElementMap;
+
+public class AAO_SignUp 
+{
+	@Test
+	public void aaoSignUp(ITestContext context) throws Exception 
+	{
+		WebDriver aaodrvr = (WebDriver)context.getAttribute("TSTDriver");
+		WebElement element = null;
+		String aao_user = "aaotestuser"+Math.random();
+		aao_user=aao_user.concat("@thestreet.com");
+		
+		//Get current working directory
+	    String workingDir=System.getProperty("user.dir");
+	    //System.out.println("My current working directory is............"+workingDir);
+	    
+	    //Get object map file
+	    WebElementMap elementmap = new WebElementMap(workingDir+"\\src\\Config\\ConfigFile.properties");
+		
+	    element = aaodrvr.findElement(elementmap.getLocator("subscribe_link"));
+		element.click();
+						
+		aaodrvr.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		
+		element = aaodrvr.findElement(elementmap.getLocator("aao_link"));
+		element.click();
+		
+		element = aaodrvr.findElement(elementmap.getLocator("free_trial_button"));
+		element.click();
+		
+		element = aaodrvr.findElement(elementmap.getLocator("email_add"));
+		element.click();
+		element.sendKeys(aao_user);
+		
+		element = aaodrvr.findElement(elementmap.getLocator("submit_button"));
+		element.click();
+						
+		createAccount ca;
+		ca= new createAccount();
+		ca.newAccount(aaodrvr);
+		
+		element=aaodrvr.findElement(elementmap.getLocator("telephone_number"));
+		element.click();
+		element.sendKeys("1234567890");
+		
+		element=aaodrvr.findElement(elementmap.getLocator("submit_button")); 
+		element.click();
+		
+		//Explicit wait for Thank you message
+	    WebDriverWait wait = new WebDriverWait(aaodrvr, 10);
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(elementmap.getLocator("thkyou_text")));
+		
+		aaodrvr.navigate().to("http://awsstage.thestreet.com");
+		
+	}
+
+}

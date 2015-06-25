@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Sign Up Demo" verbose="10">
+  <test name="TheStreet" preserve-order="true">
+  	<classes>
+       		<!-- <class name=""> </class> -->
+       		<class name="CC_SignUp"> </class>
+    </classes>
+  </test>
+</suite>

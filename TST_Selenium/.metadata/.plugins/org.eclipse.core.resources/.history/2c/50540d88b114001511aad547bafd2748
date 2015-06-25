@@ -1,0 +1,29 @@
+package SignUp;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.ITestContext;
+import org.testng.annotations.Test;
+
+public class DST_SignUp 
+{
+	@Test
+	public void dstSignUp(ITestContext context) throws InterruptedException 
+	{
+		WebDriver dstdrvr = (WebDriver)context.getAttribute("TSTDriver");
+		WebElement element = null;
+		String dst_user = "dsttestuser"+Math.random();
+		dst_user=dst_user.concat("@thestreet.com");
+		
+		element = dstdrvr.findElement(By.xpath("//li[@id='servicesLink']/a"));
+		element.click();
+		
+		dstdrvr.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		
+		element = dstdrvr.findElement(By.xpath("//a[contains(text(),'Daily Swing Trade')]"));
+		element.click();
+	}
+}

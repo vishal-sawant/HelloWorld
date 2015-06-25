@@ -1,0 +1,68 @@
+package SignUp;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestContext;
+import org.testng.annotations.Test;
+
+public class DST_SignUp 
+{
+	@Test
+	public void dstSignUp(ITestContext context) throws InterruptedException 
+	{
+		WebDriver dstdrvr = (WebDriver)context.getAttribute("TSTDriver");
+		WebElement element = null;
+		String dst_user = "dsttestuser"+Math.random();
+		dst_user=dst_user.concat("@thestreet.com");
+		
+		element = dstdrvr.findElement(By.xpath("//li[@id='servicesLink']/a"));
+		element.click();
+		
+		dstdrvr.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		
+		element = dstdrvr.findElement(By.xpath("//a[contains(text(),'Daily Swing Trade')]"));
+		element.click();
+		
+		element = dstdrvr.findElement(By.xpath("//img[contains(@alt, '14-Day FREE Trial!')]"));
+		element.click();
+		
+		element=dstdrvr.findElement(By.name("emailAddress1")); 
+		element.click(); 
+		element.sendKeys(dst_user);
+		 
+		element=dstdrvr.findElement(By.name("firstName")); 
+		element.click();
+		element.sendKeys("testfn");
+		 
+		element=dstdrvr.findElement(By.name("lastName")); 
+		element.click();
+		element.sendKeys("testln");
+		
+		element=dstdrvr.findElement(By.id("submitButton")); 
+		element.click();
+		
+		element=dstdrvr.findElement(By.id("user.password"));
+		element.sendKeys("thestreet");
+		 
+		element=dstdrvr.findElement(By.id("user.confirmPassword"));
+		element.sendKeys("thestreet");
+		
+		createAccount ca;
+		ca= new createAccount();
+		ca.newAccount(dstdrvr);
+		
+		element=dstdrvr.findElement(By.id("submitButton")); 
+		element.click();
+		
+		//Explicit wait for Thank you message
+	    WebDriverWait wait = new WebDriverWait(dstdrvr, 10);
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Thank you')]")));
+		
+		dstdrvr.navigate().to("http://awsstage.thestreet.com");
+	}
+}

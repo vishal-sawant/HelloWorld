@@ -1,0 +1,99 @@
+package SignUp;
+
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestContext;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import Lib.WebElementMap;
+
+public class CC_SignUp 
+{
+	@Test
+	@Parameters ({"streeturl"})
+	public void ccSignUp(String streeturl,ITestContext context) throws Exception 
+	{
+
+		WebDriver driver = (WebDriver)context.getAttribute("TSTDriver");
+		WebElement element = null;
+		
+		
+		//Get current working directory
+	    String workingDir=System.getProperty("user.dir");
+	    //Get object map file
+	    WebElementMap elementmap = new WebElementMap(workingDir+"\\objectpropertiesfile\\objectmap.properties");
+		
+		//Launch the Online Website
+	    driver.get(streeturl);
+		//Put a Implicit wait, this means that any search for elements on the page could take the time the implicit wait is set for before throwing exception
+	    driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		
+	    String cc_user = "cctestuser"+Math.random();
+		cc_user=cc_user.concat("@thestreet.com");
+				
+		//element = driver.findElement(By.xpath("//a[contains(text(),'Continue to site')]"));
+		element = driver.findElement(elementmap.getLocator("Continue_site_link"));
+		element.click();
+			
+		element = driver.findElement(elementmap.getLocator("Subscribe_link"));
+		element.click();
+		
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		
+		element = driver.findElement(elementmap.getLocator("cc_link"));
+		element.click();
+				
+		/*//Members Login 
+		element = driver.findElement(By.className("textField"));
+		element.click();
+		element.sendKeys("testuser123@thestreet.com");
+		
+		element = driver.findElement(By.className("textField passwordField"));
+		element.click();
+		element.sendKeys("street");
+		
+		element = driver.findElement(By.className("textField passwordField"));
+		element.click();*/
+		
+		element = driver.findElement(elementmap.getLocator("cc_button"));
+		element.click();
+		
+		//MLP ==> "Begin your exclusive membership//
+		element=driver.findElement(elementmap.getLocator("membership_button")); 
+		element.click();
+		  
+		//CC Page 
+		element=driver.findElement(By.id("user.emailAddress1"));
+		element.click(); 
+		element.sendKeys(cc_user);
+		 
+		element=driver.findElement(By.id("user.firstName")); 
+		element.click();
+		element.sendKeys("testfn");
+		 
+		element=driver.findElement(By.id("user.lastName")); 
+		element.click();
+		element.sendKeys("testln");
+								
+		createAccount ca;
+		ca= new createAccount();
+		ca.newAccount(driver);
+		
+		element=driver.findElement(By.id("creditCard.creditCardTelephone1"));
+		element.sendKeys("1234567890");
+		 
+		element=driver.findElement(By.id("submitButton")); 
+		element.click();
+		
+		//Explicit wait for Thank you message
+	    WebDriverWait wait = new WebDriverWait(driver, 10);
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[contains(text(),'Thank you')]")));
+		
+		driver.navigate().to("http://awsstage.thestreet.com");
+	}
+}

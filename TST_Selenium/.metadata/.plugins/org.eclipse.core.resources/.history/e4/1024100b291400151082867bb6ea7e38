@@ -1,0 +1,38 @@
+package SignUp;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.ITestContext;
+import org.testng.annotations.Test;
+
+public class AAP_SignUp 
+{
+	@Test
+	public void ccSignUp(ITestContext context) throws InterruptedException 
+	{
+		WebDriver driver = (WebDriver)context.getAttribute("TSTDriver");
+		WebElement element = null;
+		
+		element = driver.findElement(By.xpath("//li[@id='servicesLink']/a"));
+		element.click();
+		
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		
+		element = driver.findElement(By.xpath("//a[contains(text(),'Action Alerts PLUS')]"));
+		element.click();
+		
+		element = driver.findElement(By.xpath("//div[@id='sectionOne']/div/a/img"));
+		element.click();
+		
+		element = driver.findElement(By.id("emailAddress1"));
+		element.click();
+		element.sendKeys("testuser_001@thestreet.com");
+		
+		element = driver.findElement(By.id("submitButton"));
+		element.click();
+	}
+	
+}

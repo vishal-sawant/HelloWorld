@@ -1,0 +1,38 @@
+package SignUp;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.ITestContext;
+import org.testng.annotations.Test;
+
+public class AAO_SignUp 
+{
+	@Test
+	public void aaoSignUp(ITestContext context) throws InterruptedException 
+	{
+		WebDriver aaodrvr = (WebDriver)context.getAttribute("TSTDriver");
+		WebElement element = null;
+		String aao_user = "aaotestuser"+Math.random();
+		aao_user=aao_user.concat("@thestreet.com");
+		
+		element = aaodrvr.findElement(By.xpath("//li[@id='servicesLink']/a"));
+		element.click();
+		
+		aaodrvr.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		
+		element = aaodrvr.findElement(By.xpath("//a[contains(text(),'Action Alerts OPTIONS')]"));
+		element.click();
+		
+		element = aaodrvr.findElement(By.xpath("//div[@id='content']/div/a/img"));
+		element.click();
+		
+		element = aaodrvr.findElement(By.id("emailAddress1"));
+		element.click();
+		element.sendKeys(aao_user);
+		
+	}
+
+}

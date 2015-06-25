@@ -1,0 +1,83 @@
+package SignUp;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestContext;
+import org.testng.annotations.Test;
+
+public class AAP_SignUp 
+{
+	@Test
+	public void ccSignUp(ITestContext context) throws InterruptedException 
+	{
+		WebDriver driver = (WebDriver)context.getAttribute("TSTDriver");
+		WebElement element = null;
+		
+		element = driver.findElement(By.xpath("//li[@id='servicesLink']/a"));
+		element.click();
+		
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		
+		element = driver.findElement(By.xpath("//a[contains(text(),'Action Alerts PLUS')]"));
+		element.click();
+		
+		element = driver.findElement(By.xpath("//div[@id='sectionOne']/div/a/img"));
+		element.click();
+		
+		element = driver.findElement(By.id("emailAddress1"));
+		element.click();
+		element.sendKeys("testuser_001@thestreet.com");
+		
+		element = driver.findElement(By.id("submitButton"));
+		element.click();
+		
+		element=driver.findElement(By.id("user.password"));
+		element.sendKeys("thestreet");
+		 
+		element=driver.findElement(By.id("user.confirmPassword"));
+		element.sendKeys("thestreet");
+		
+		element=driver.findElement(By.id("creditCard.creditCardNumber"));
+		element.sendKeys("4111111111111111");
+		
+		element=driver.findElement(By.id("creditCard.creditCardCvv"));
+		element.sendKeys("123");
+		  
+		element=driver.findElement(By.id("creditCard.creditCardHolderName"));
+		element.sendKeys("testfn testln");
+		  
+		element=driver.findElement(By.id("creditCard.creditCardAddress1"));
+		element.sendKeys("123 123");
+		  
+		element=driver.findElement(By.id("creditCard.creditCardAddress2"));
+		element.sendKeys("123 123");
+			  
+		element=driver.findElement(By.id("creditCard.creditCardCity"));
+		element.sendKeys("New York");
+		  
+		Select dropdown=new Select(driver.findElement(By.id("creditCard.creditCardState")));
+		dropdown.selectByValue("NY");
+		  
+		element=driver.findElement(By.id("creditCard.creditCardPostalCode"));
+		element.sendKeys("55555");
+		  
+		element=driver.findElement(By.id("creditCard.creditCardTelephone1"));
+		element.sendKeys("1234567890");
+		 
+		element=driver.findElement(By.id("submitButton")); 
+		element.click();
+		
+		//Explicit wait for Thank you message
+	    WebDriverWait wait = new WebDriverWait(driver, 10);
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(text(),'Thank you')]")));
+		
+		driver.navigate().to("http://awsstage.thestreet.com");
+	}
+	
+}

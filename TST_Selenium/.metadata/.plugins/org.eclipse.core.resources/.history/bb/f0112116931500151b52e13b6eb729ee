@@ -1,0 +1,34 @@
+package Lib;
+
+import java.io.IOException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.ITestContext;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+
+public class configureTST 
+{
+	WebDriver driver;
+	@BeforeSuite
+	public void setupBeforeSuite(ITestContext context)
+	{
+		// Create a new instance of the Firefox driver
+		WebDriver driver=new FirefoxDriver();
+		driver.manage().window().maximize();
+		context.setAttribute("TSTDriver", driver);
+	}
+	
+	@AfterSuite(alwaysRun = true)
+	public void setupAfterSuite(ITestContext context) throws InterruptedException, IOException 
+	{
+		WebDriver driver1 = (WebDriver)context.getAttribute("TSTDriver");
+		driver1.manage().deleteAllCookies();
+		driver1.quit();
+		/*Runtime.getRuntime().exec("taskkill /F /IM firefox.exe");
+		Thread.sleep(3000);
+		Runtime.getRuntime().exec("taskkill /F /IM plugin-container.exe");
+		Runtime.getRuntime().exec("taskkill /F /IM WerFault.exe");*/
+	}
+
+}

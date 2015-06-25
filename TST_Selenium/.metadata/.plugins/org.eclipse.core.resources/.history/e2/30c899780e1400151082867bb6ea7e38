@@ -1,0 +1,11 @@
+<suite name="Sign Up Demo" verbose="10">
+  <test name="TheStreet" preserve-order="true">
+  	<packages>
+      <package name="SignUp" />
+     	<classes>
+       		<!-- <class name=""> </class> -->
+       		<class name="CC_SignUp"> </class>
+    	</classes>
+    </packages>
+  </test>
+</suite>

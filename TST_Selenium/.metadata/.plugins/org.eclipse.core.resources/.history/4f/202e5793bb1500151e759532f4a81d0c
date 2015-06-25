@@ -1,0 +1,11 @@
+package Lib;
+import Lib.WebElementMapping;
+
+public class CommonConstant
+{
+	public static final String workingDir =	System.getProperty("user.dir");
+	public static final WebElementMapping elementmap = new WebElementMapping(workingDir+"\\src\\Config\\ConfigFile.properties");
+	public static final String Path = workingDir.concat("\\src\\Test Data\\Test_data.xlsx");
+	public static final String streeturl = "http://www.awsstage.com";
+
+}

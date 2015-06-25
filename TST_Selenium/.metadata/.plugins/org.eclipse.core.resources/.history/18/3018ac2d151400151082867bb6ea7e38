@@ -1,0 +1,39 @@
+package SignUp;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.ITestContext;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
+
+public class configureTST 
+{
+	WebDriver driver;
+	@Parameters ({"url"})
+	@BeforeSuite
+	public void setupBeforeSuite(ITestContext context,String url)
+	{
+		// Create a new instance of the Firefox driver
+		WebDriver driver=new FirefoxDriver();
+		context.setAttribute("TSTDriver", driver);
+		driver.manage().window().maximize();
+		//Launch the Online Website
+	    driver.get(url);
+		//Put a Implicit wait, this means that any search for elements on the page could take the time the implicit wait is set for before throwing exception
+	    driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+	}
+	
+	@AfterSuite(alwaysRun = true)
+	public void setupAfterSuite(ITestContext context) throws InterruptedException 
+	{
+		WebDriver driver1 = (WebDriver)context.getAttribute("TSTDriver");
+		driver1.close();
+		Thread.sleep(3000);
+		driver1.manage().deleteAllCookies();
+		driver1.quit();
+	}
+
+}

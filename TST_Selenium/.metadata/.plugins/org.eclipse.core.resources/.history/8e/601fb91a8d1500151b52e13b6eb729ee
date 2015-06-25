@@ -1,0 +1,66 @@
+package SignUp;
+
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestContext;
+import org.testng.annotations.Test;
+
+import Lib.WebElementMap;
+
+public class AAP_SignUp 
+{
+	@Test
+	public void aapSignUp(ITestContext context) throws InterruptedException 
+	{
+		WebDriver driver = (WebDriver)context.getAttribute("TSTDriver");
+		WebElement element = null;
+		String aap_user = "aaptestuser"+Math.random();
+		aap_user=aap_user.concat("@thestreet.com");
+		
+		//Get current working directory
+	    String workingDir=System.getProperty("user.dir");
+	    //System.out.println("My current working directory is............"+workingDir);
+	    
+	    //Get object map file
+	    WebElementMap elementmap = new WebElementMap(workingDir+"\\src\\Config\\ConfigFile.properties");
+		
+	    element = driver.findElement(elementmap.getLocator("subscribe_link"));
+		element.click();
+		
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		
+		element = driver.findElement(By.xpath("//a[contains(text(),'Action Alerts PLUS')]"));
+		element.click();
+		
+		element = driver.findElement(By.xpath("//div[@id='sectionOne']/div/a/img"));
+		element.click();
+		
+		element = driver.findElement(By.name("emailAddress1"));
+		element.click();
+		element.sendKeys(aap_user);
+		
+		element = driver.findElement(By.id("submitButton"));
+		element.click();
+		
+		createAccount ca;
+		ca= new createAccount();
+		ca.newAccount(driver);
+		
+		element=driver.findElement(By.id("creditCard.creditCardTelephone1"));
+		element.sendKeys("1234567890");
+		
+		element=driver.findElement(By.id("submitButton")); 
+		element.click();
+		
+		//Explicit wait for Thank you message
+	    WebDriverWait wait = new WebDriverWait(driver, 10);
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(text(),'Thank you')]")));
+		
+		driver.navigate().to("http://awsstage.thestreet.com");
+	}
+	
+}

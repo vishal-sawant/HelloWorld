@@ -1,0 +1,50 @@
+package SignUp;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.ITestContext;
+import org.testng.annotations.Test;
+
+public class DSA_SignUp 
+{
+	@Test
+	public void dsaSignUp(ITestContext context) throws InterruptedException 
+	{
+		WebDriver dsadrvr = (WebDriver)context.getAttribute("TSTDriver");
+		WebElement element = null;
+		String dsa_user = "dsatestuser"+Math.random();
+		dsa_user=dsa_user.concat("@thestreet.com");
+		
+		element = dsadrvr.findElement(By.xpath("//li[@id='servicesLink']/a"));
+		element.click();
+		
+		dsadrvr.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		
+		element = dsadrvr.findElement(By.xpath("//a[contains(text(),'Dividend Stock Advisor')]"));
+		element.click();
+		
+		element = dsadrvr.findElement(By.xpath("//div[@id='rightColumn']/div/a/img"));
+		element.click();
+		
+		element = dsadrvr.findElement(By.xpath("//div[@id='sectionOne']/div/a/img"));
+		element.click();
+		
+		element=dsadrvr.findElement(By.id("emailAddress1"));
+		element.click(); 
+		element.sendKeys(dsa_user);
+		 
+		element=dsadrvr.findElement(By.id("firstName")); 
+		element.click();
+		element.sendKeys("testfn");
+		 
+		element=dsadrvr.findElement(By.id("lastName")); 
+		element.click();
+		element.sendKeys("testln");
+		
+		element=dsadrvr.findElement(By.id("submitButton")); 
+		element.click();
+	}
+}

@@ -1,0 +1,13 @@
+#
+# CC SignUp page Web Elements
+#
+Continue_site_link =xpath://a[contains(text(),'Continue to site')]
+Subscribe_link =xpath://li[@id='servicesLink']/a
+cc_link =xpath://a[contains(text(),'Chairma')]
+cc_button =xpath://div[@id='rightColumn']/a/img
+membership_button =xpath://div[@id='sectionOne']/div/a/img
+email_id =id:user.emailAddress1
+first_name =id:user.firstName
+last_name =id:user.lastName
+telephone_number =id:creditCard.creditCardTelephone1
+getstarted_button =id:submitButton

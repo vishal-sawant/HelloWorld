@@ -1,0 +1,6 @@
+#
+# CC SignUp page Web Elements
+#
+Continue_site_link =id:login_login_username
+Password_field =id:login_login_password
+Login_button =id:login_submit

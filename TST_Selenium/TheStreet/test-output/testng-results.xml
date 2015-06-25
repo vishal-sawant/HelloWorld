@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="5" passed="5">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Sign Up Demo" duration-ms="252528" started-at="2015-06-19T11:25:34Z" finished-at="2015-06-19T11:29:47Z">
+    <groups>
+    </groups>
+    <test name="TheStreet" duration-ms="252528" started-at="2015-06-19T11:25:34Z" finished-at="2015-06-19T11:29:47Z">
+      <class name="SignUp.AAP_SignUp">
+        <test-method status="PASS" signature="aapSignUp(org.testng.ITestContext)[pri:0, instance:SignUp.AAP_SignUp@1cdeff]" name="aapSignUp" duration-ms="41912" started-at="2015-06-19T16:56:54Z" finished-at="2015-06-19T16:57:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@6e1dec]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- aapSignUp -->
+      </class> <!-- SignUp.AAP_SignUp -->
+      <class name="SignUp.CC_SignUp">
+        <test-method status="PASS" signature="ccSignUp(org.testng.ITestContext)[pri:0, instance:SignUp.CC_SignUp@8fce95]" name="ccSignUp" duration-ms="79203" started-at="2015-06-19T16:55:34Z" finished-at="2015-06-19T16:56:54Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@6e1dec]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ccSignUp -->
+      </class> <!-- SignUp.CC_SignUp -->
+      <class name="SignUp.ConfigureTST">
+        <test-method status="PASS" signature="setupBeforeSuite(org.testng.ITestContext)[pri:0, instance:SignUp.ConfigureTST@17e6a96]" name="setupBeforeSuite" is-config="true" duration-ms="4731" started-at="2015-06-19T16:55:30Z" finished-at="2015-06-19T16:55:34Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@6e1dec]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupBeforeSuite -->
+        <test-method status="PASS" signature="setupAfterSuite(org.testng.ITestContext)[pri:0, instance:SignUp.ConfigureTST@17e6a96]" name="setupAfterSuite" is-config="true" duration-ms="1690" started-at="2015-06-19T16:59:47Z" finished-at="2015-06-19T16:59:49Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@6e1dec]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupAfterSuite -->
+      </class> <!-- SignUp.ConfigureTST -->
+      <class name="SignUp.DST_SignUp">
+        <test-method status="PASS" signature="dstSignUp(org.testng.ITestContext)[pri:0, instance:SignUp.DST_SignUp@12d7a10]" name="dstSignUp" duration-ms="41805" started-at="2015-06-19T16:58:11Z" finished-at="2015-06-19T16:58:53Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@6e1dec]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- dstSignUp -->
+      </class> <!-- SignUp.DST_SignUp -->
+      <class name="SignUp.DSA_SignUp">
+        <test-method status="PASS" signature="dsaSignUp(org.testng.ITestContext)[pri:0, instance:SignUp.DSA_SignUp@152544e]" name="dsaSignUp" duration-ms="54299" started-at="2015-06-19T16:58:53Z" finished-at="2015-06-19T16:59:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@6e1dec]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- dsaSignUp -->
+      </class> <!-- SignUp.DSA_SignUp -->
+      <class name="SignUp.AAO_SignUp">
+        <test-method status="PASS" signature="aaoSignUp(org.testng.ITestContext)[pri:0, instance:SignUp.AAO_SignUp@143c8b3]" name="aaoSignUp" duration-ms="35299" started-at="2015-06-19T16:57:36Z" finished-at="2015-06-19T16:58:11Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@6e1dec]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- aaoSignUp -->
+      </class> <!-- SignUp.AAO_SignUp -->
+    </test> <!-- TheStreet -->
+  </suite> <!-- Sign Up Demo -->
+</testng-results>

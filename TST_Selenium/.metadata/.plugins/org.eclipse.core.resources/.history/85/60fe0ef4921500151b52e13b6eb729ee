@@ -1,0 +1,79 @@
+package SignUp;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestContext;
+import org.testng.annotations.Test;
+
+import Lib.WebElementMap;
+import Lib.createAccount;
+
+public class DSA_SignUp 
+{
+	@Test
+	public void dsaSignUp(ITestContext context) throws Exception 
+	{
+		WebDriver dsadrvr = (WebDriver)context.getAttribute("TSTDriver");
+		WebElement element = null;
+		String dsa_user = "dsatestuser"+Math.random();
+		dsa_user=dsa_user.concat("@thestreet.com");
+		
+		//Get current working directory
+	    String workingDir=System.getProperty("user.dir");
+	    //System.out.println("My current working directory is............"+workingDir);
+	    
+	    //Get object map file
+	    WebElementMap elementmap = new WebElementMap(workingDir+"\\src\\Config\\ConfigFile.properties");
+		
+	    element = dsadrvr.findElement(elementmap.getLocator("subscribe_link"));
+		element.click();
+		
+		dsadrvr.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		
+		element = dsadrvr.findElement(elementmap.getLocator("dsa_link"));
+		element.click();
+		
+		element = dsadrvr.findElement(elementmap.getLocator("getstarted_button1"));
+		element.click();
+		
+		element = dsadrvr.findElement(elementmap.getLocator("getstarted_button2"));
+		element.click();
+		
+		element=dsadrvr.findElement(elementmap.getLocator("email_add"));
+		element.click(); 
+		element.sendKeys(dsa_user);
+		 
+		element=dsadrvr.findElement(elementmap.getLocator("fname")); 
+		element.click();
+		element.sendKeys("testfn");
+		 
+		element=dsadrvr.findElement(elementmap.getLocator("lname")); 
+		element.click();
+		element.sendKeys("testln");
+		
+		element=dsadrvr.findElement(elementmap.getLocator("submit_button")); 
+		element.click();
+		
+		createAccount ca;
+		ca= new createAccount();
+		ca.newAccount(dsadrvr);
+		
+		element=dsadrvr.findElement(elementmap.getLocator("telephone_number"));
+		element.sendKeys("1234567890");
+		
+		element=dsadrvr.findElement(elementmap.getLocator("submit_button")); 
+		element.click();
+		
+		//Explicit wait for Thank you message
+	    WebDriverWait wait = new WebDriverWait(dsadrvr, 10);
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(elementmap.getLocator("thkyou_text")));
+		
+		dsadrvr.navigate().to("http://awsstage.thestreet.com");
+		
+	}
+}

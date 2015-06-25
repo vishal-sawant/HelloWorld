@@ -1,0 +1,94 @@
+package SignUp;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.Test;
+
+public class TEST {
+	// public static void main(String[] args)
+	@Test
+	public void test1() throws InterruptedException {
+		// WebDriver driver;
+		WebDriver driver;
+		WebElement element = null;
+		driver = new FirefoxDriver();
+		// driver = new InternetExplorerDriver ();
+		driver.get("http://awsstage.thestreet.com");
+
+		driver.manage().window().maximize();
+
+		WebElement element1 = driver.findElement(By.name("Subscribe"));
+
+		// WebElement
+		// element=driver.findElement(By.xpath("//*[@id="switchToDiv"]/div[2]/ul[1]/li[3]/a"));
+
+		/* Mouse hover & click */
+
+		Actions builder = new Actions(driver);
+		builder.moveToElement(element1).perform();
+		Thread.sleep(10000);
+		element1.click();
+
+		WebElement element2 = driver.findElement(By.xpath("//*[@id="));
+
+		// "Yes I Want CC on login page"//
+		element = driver.findElement(By
+				.xpath("/html/body/div[2]/div[2]/div[2]/a/img"));
+		element.click();
+
+		// MLP ==> "Begin your exclusive membership//
+		element = driver.findElement(By
+				.xpath("/html/body/div[4]/div[1]/div/a/img"));
+		element.click();
+
+		// CC Page//
+		element = driver.findElement(By.id("user.emailAddress1"));
+		element.click();
+		element.sendKeys("T_0s3-3July@thestreet.com");
+
+		element = driver.findElement(By.id("user.firstName"));
+		element.click();
+		element.sendKeys("Shilpa");
+
+		element = driver.findElement(By.id("user.lastName"));
+		element.click();
+		element.sendKeys("Bakshi");
+
+		element = driver.findElement(By.id("user.password"));
+		element.sendKeys("thestreet");
+
+		element = driver.findElement(By.id("user.confirmPassword"));
+		element.sendKeys("thestreet");
+
+		element = driver.findElement(By.id("creditCard.creditCardNumber"));
+		element.sendKeys("4111111111111111");
+
+		element = driver.findElement(By.id("creditCard.creditCardHolderName"));
+		element.sendKeys("Shilpa Bakshi");
+
+		element = driver.findElement(By.id("creditCard.creditCardAddress1"));
+		element.sendKeys("Test Address1");
+
+		element = driver.findElement(By.id("creditCard.creditCardAddress2"));
+		element.sendKeys("Test Address2");
+
+		element = driver.findElement(By.id("creditCard.creditCardCity"));
+		element.sendKeys("TestCity");
+
+		element = driver.findElement(By.id("creditCard.creditCardState"));
+		element.sendKeys("Tennessee");
+
+		element = driver.findElement(By.id("creditCard.creditCardPostalCode"));
+		element.sendKeys("78965");
+
+		element = driver.findElement(By.id("creditCard.creditCardTelephone1"));
+		element.sendKeys("1234567890");
+
+		element = driver.findElement(By.id("submitButton"));
+		element.click();
+	}
+}

@@ -1,0 +1,112 @@
+package SignUp;
+
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestContext;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import Lib.WebElementMapping;
+import Lib.CreateAccount;
+import Lib.ReadExcel;
+import Lib.CommonConstant;
+
+public class CC_SignUp 
+{
+	@Test
+	//@Parameters ({"streeturl"})
+	public void ccSignUp(String streeturl,ITestContext context) throws Exception 
+	{
+
+		WebDriver driver = (WebDriver)context.getAttribute("TSTDriver");
+		WebElement element = null;
+		
+		try{
+		//Launch the Online Website
+	    driver.get(CommonConstant.streeturl);
+		//Put a Implicit wait, this means that any search for elements on the page could take the time the implicit wait is set for before throwing exception
+	    driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		
+	    /*String cc_user = "cctestuser"+Math.random();
+		cc_user=cc_user.concat("@thestreet.com");*/
+		
+		/*//Get current working directory
+	    String workingDir=System.getProperty("user.dir");
+	    //System.out.println("My current working directory is............"+workingDir);
+	    
+	    //Get object map file
+	    WebElementMapping elementmap = new WebElementMapping(workingDir+"\\src\\Config\\ConfigFile.properties");*/
+	    
+	    /*//ReadExcel RXL;
+	    String Path = workingDir.concat("\\src\\Test Data\\Test_data.xlsx");*/
+	    ReadExcel.setExcelFile(CommonConstant.Path, CommonConstant.sheet);
+	    String email_id = ReadExcel.getCellData(1, 0);
+						
+		element = driver.findElement(elementmap.getLocator("continue_site_link"));
+		element.click();
+			
+		element = driver.findElement(elementmap.getLocator("subscribe_link"));
+		element.click();
+		
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		
+		element = driver.findElement(elementmap.getLocator("cc_link"));
+		element.click();
+				
+		/*//Members Login 
+		element = driver.findElement(By.className("textField"));
+		element.click();
+		element.sendKeys("testuser123@thestreet.com");
+		
+		element = driver.findElement(By.className("textField passwordField"));
+		element.click();
+		element.sendKeys("street");
+		
+		element = driver.findElement(By.className("textField passwordField"));
+		element.click();*/
+		
+		element = driver.findElement(elementmap.getLocator("cc_button"));
+		element.click();
+		
+		//MLP ==> "Begin your exclusive membership//
+		element=driver.findElement(elementmap.getLocator("membership_button")); 
+		element.click();
+		  
+		//CC Page 
+		element=driver.findElement(elementmap.getLocator("email_id"));
+		element.click(); 
+		element.sendKeys(email_id);
+		 
+		element=driver.findElement(elementmap.getLocator("first_name")); 
+		element.click();
+		element.sendKeys("testfn");
+		 
+		element=driver.findElement(elementmap.getLocator("last_name")); 
+		element.click();
+		element.sendKeys("testln");
+								
+		CreateAccount ca;
+		ca= new CreateAccount();
+		ca.newAccount(driver);
+		
+		element=driver.findElement(elementmap.getLocator("telephone_number"));
+		element.sendKeys("1234567890");
+		 
+		element=driver.findElement(elementmap.getLocator("submit_button")); 
+		element.click();
+		
+		//Explicit wait for Thank you message
+	    WebDriverWait wait = new WebDriverWait(driver, 10);
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(elementmap.getLocator("thkyou_text")));
+		
+		driver.navigate().to("http://awsstage.thestreet.com");
+		}catch (Exception e){System.out.println("******** Error occurs**********");
+		e.printStackTrace();
+		System.out.println("******** Error occurs**********");
+		}
+		
+	}
+}

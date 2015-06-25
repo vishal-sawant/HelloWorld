@@ -1,0 +1,9 @@
+package TSTSignUp;
+
+import org.testng.annotations.Test;
+
+public class CC_SignUp {
+  @Test
+  public void f() {
+  }
+}

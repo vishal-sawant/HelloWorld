@@ -1,0 +1,7 @@
+#
+# CC SignUp page Web Elements
+#
+Continue_site_link =xpath://a[contains(text(),'Continue to site')]
+Subscribe_link =xpath://li[@id='servicesLink']/a
+cc_link =xpath://a[contains(text(),'Chairma')]
+cc_button =xpath://div[@id='rightColumn']/a/img

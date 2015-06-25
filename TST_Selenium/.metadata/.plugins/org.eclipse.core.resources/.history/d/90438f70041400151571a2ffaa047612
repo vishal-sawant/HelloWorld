@@ -1,0 +1,8 @@
+<suite name="Sign Up Demo" verbose="10">
+  <test name="SignUp" preserve-order="true">
+  	<classes>
+       		<!-- <class name=""> </class> -->
+       		<class name="CC_SignUp"> </class>
+    </classes>
+  </test>
+</suite>
