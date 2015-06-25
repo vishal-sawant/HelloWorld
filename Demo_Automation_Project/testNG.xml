@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="WebDriver Test Suite" verbose="1" parallel="tests"
+	thread-count="1">
+
+	<listeners>
+		<listener class-name="com.selenium.common.Listener" />
+	</listeners>
+
+	<test name="WebDriver Test FireFox">
+		<parameter name="browser" value="FF" />
+		<groups>
+			<run>
+				<include name="smokeTest" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.selenium.test.PageLoadTest" >
+				<methods>
+					<exclude name="pageLoadStatusTest" />
+				</methods>
+			</class>
+			<class name="com.selenium.test.GoogleSearchTest" />
+		</classes>
+	</test>
+</suite>
